@@ -32,13 +32,14 @@
 //
 package com.microsoft.projectoxford.emotionsample.helper;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBarActivity;
+//import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -48,7 +49,7 @@ import java.io.File;
 import java.io.IOException;
 
 // The activity for the user to select a image and to detect faces in the image.
-public class SelectImageActivity extends ActionBarActivity {
+public class SelectImageActivity extends Activity {
     // Flag to indicate the request of the next task to be performed
     private static final int REQUEST_TAKE_PHOTO = 0;
     private static final int REQUEST_SELECT_IMAGE_IN_ALBUM = 1;
