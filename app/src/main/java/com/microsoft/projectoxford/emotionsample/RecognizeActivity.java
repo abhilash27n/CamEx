@@ -146,7 +146,8 @@ public class RecognizeActivity extends Activity {
 
     // Called when the "Select Image" button is clicked.
     public void selectImage(View view) {
-        mEditText.setText("");
+        //mEditText.setText("");
+        mEditText.setVisibility(View.INVISIBLE);
 
         Intent intent;
         intent = new Intent(RecognizeActivity.this, com.microsoft.projectoxford.emotionsample.helper.SelectImageActivity.class);
@@ -294,7 +295,8 @@ public class RecognizeActivity extends Activity {
         protected void onPostExecute(List<RecognizeResult> result) {
             super.onPostExecute(result);
             // Display based on error existence
-
+            mEditText.setText("");
+            mEditText.setVisibility(View.VISIBLE);
             if (this.useFaceRectangles == false) {
                 mEditText.append("\n\nRecognizing emotions with auto-detected face rectangles...\n");
             } else {
@@ -340,6 +342,14 @@ public class RecognizeActivity extends Activity {
             }
 
             mButtonSelectImage.setEnabled(true);
+        }
+
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+            mEditText.setVisibility(View.VISIBLE);
+            mEditText.append("Emotion Detection in Progress...");
         }
     }
 }

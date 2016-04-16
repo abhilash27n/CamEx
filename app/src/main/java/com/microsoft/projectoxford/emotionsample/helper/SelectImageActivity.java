@@ -41,6 +41,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 //import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.microsoft.projectoxford.emotionsample.R;
@@ -56,12 +57,14 @@ public class SelectImageActivity extends Activity {
 
     // The URI of photo taken with camera
     private Uri mUriPhotoTaken;
+    View view;
 
     // When the activity is created, set all the member variables to initial state.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_image);
+        view = (View) this.findViewById(android.R.id.content).getRootView();
     }
 
     // Save the activity state when it's going to stop.
@@ -84,7 +87,7 @@ public class SelectImageActivity extends Activity {
         switch (requestCode)
         {
             case REQUEST_TAKE_PHOTO:
-            case REQUEST_SELECT_IMAGE_IN_ALBUM:
+            //case REQUEST_SELECT_IMAGE_IN_ALBUM:
                 if (resultCode == RESULT_OK) {
                     Uri imageUri;
                     if (data == null || data.getData() == null) {
@@ -133,5 +136,11 @@ public class SelectImageActivity extends Activity {
     private void setInfo(String info) {
         TextView textView = (TextView) findViewById(R.id.info);
         textView.setText(info);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        takePhoto(view);
     }
 }

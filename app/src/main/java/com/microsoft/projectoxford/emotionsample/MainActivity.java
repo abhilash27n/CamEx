@@ -41,6 +41,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.microsoft.projectoxford.emotionsample.helper.SelectImageActivity;
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +60,26 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+        Intent intent = new Intent(this, RecognizeActivity.class);
+        startActivity(intent);
+    }
+
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    public void activityRecognize(View v) {
-        Intent intent = new Intent(this, RecognizeActivity.class);
-        startActivity(intent);
-    }
+//    public void activityRecognize(View v) {
+//        Intent intent = new Intent(this, RecognizeActivity.class);
+//        startActivity(intent);
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
